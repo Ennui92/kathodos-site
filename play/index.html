@@ -346,14 +346,14 @@ const BOOST = {"POP-029":["Minecraft","Grand Theft Auto V","Tetris","Super Mario
   const PRIOR_WEIGHT = 12, ZIPF = 1.1;
   const TIERS = [
     { name: "Αφρός", pts: 10, min: 0.18, c: "var(--t1)", glyph: "🫧", flav: "Αυτό το είπε όλη η Κάλυμνος." },
-    { name: "Φύκια", pts: 15, min: 0.09, c: "var(--t2)", glyph: "🌿", flav: "Φύκια για μεταξωτές κορδέλες: έξυπνο, αλλά το σκέφτηκαν κι άλλοι." },
+    { name: "Φύκια", pts: 15, min: 0.09, c: "var(--t2)", glyph: "🌿", flav: "Φύκια: έξυπνο, αλλά το σκέφτηκαν κι άλλοι." },
     { name: "Μαρίδα", pts: 30, min: 0.04, c: "var(--t3)", glyph: "🐟", flav: "Καλή απάντηση. Κολυμπάς με το κοπάδι." },
     { name: "Χταπόδι", pts: 60, min: 0.015, c: "var(--t4)", glyph: "🐙", flav: "Κρυμμένο στα βράχια. Ωραίο." },
-    { name: "Ψιλό σφουγγάρι", pts: 85, min: 0.005, c: "var(--t5)", glyph: "🧽", flav: "Λίγοι κατεβαίνουν τόσο βαθιά." },
-    { name: "Σφουγγαρομύριο", pts: 100, min: 0, c: "var(--t6)", glyph: "✨", flav: "Ένα στα μύρια! Σχεδόν κανείς δεν το είπε." },
+    { name: "Σφουγγάρι", pts: 85, min: 0.005, c: "var(--t5)", glyph: "🧽", flav: "Λίγοι κατεβαίνουν τόσο βαθιά." },
+    { name: "Σφουγγαρομύριο!", pts: 100, min: 0, c: "var(--t6)", glyph: "✨", flav: "Ένα στα Σφουγγαρομύριο! Βρήκες την πιο σπάνια απάντηση!" },
   ];
   const LETHE = { name: "Χωρίς ανάσα", c: "var(--ember)", glyph: "💨", flav: "Τελείωσε η ανάσα. Ανέβηκες με άδεια χέρια." };
-  const RANKS = [[0, "Μούτσος"], [151, "Κολαουζιέρης"], [251, "Γυμνός δύτης"], [351, "Μηχανικός"], [450, "Καπετάνιος"]];
+  const RANKS = [[0, "Μούτσος"], [151, "Κολαουζιέρης"], [251, "Ελεύθερη Κατάδυση"], [351, "Κατάδυση με μπουκάλες"], [450, "Καπετάνιος"]];
   const rankOf = sc => { let r = RANKS[0][1]; for (const [m, n] of RANKS) if (sc >= m) r = n; return r; };
   const CAT = { geography: "Γεωγραφία", pop_culture: "Ποπ κουλτούρα", history: "Ιστορία", science_nature: "Επιστήμη & φύση",
     sports: "Αθλητισμός", food_drink: "Φαγητό & ποτό", language: "Γλώσσα", everyday_life: "Καθημερινότητα",
@@ -361,21 +361,21 @@ const BOOST = {"POP-029":["Minecraft","Grand Theft Auto V","Tetris","Super Mario
   // Depth zones (metres). Zones with art start where their picture starts (every 18.1 m, see ART_LAYOUT).
   // Colours are the water under the art while it loads.
   const ZONES = [
-    { at: 0, name: "Ο γιαλός", col: "#1f8fa3", art: "shallow" },
-    { at: 10, name: "Η ποσειδωνία", col: "#17708a" },
-    { at: 18, name: "Τα βράχια", col: "#0f4f72", art: "mid" },
-    { at: 36, name: "Το ναυάγιο", col: "#0a2a44", art: "wreck" },
-    { at: 54, name: "Ο βυθός", col: "#050d18", art: "floor" },
+    { at: 0, name: "Γιαλός", col: "#1f8fa3", art: "shallow" },
+    { at: 10, name: "Φύκια", col: "#17708a" },
+    { at: 18, name: "Βράχια", col: "#0f4f72", art: "mid" },
+    { at: 36, name: "Μηχανισμός των Αντικυθήρων", col: "#0a2a44", art: "wreck" },
+    { at: 54, name: "Πυθμένας", col: "#050d18", art: "floor" },
   ];
   const MARKS = [
     [0, "<b>0 μ</b> · Πόθια, Κάλυμνος: το καΐκι ρίχνει σκοινί"],
     [5, "εδώ βουτάνε τα παιδιά για αχινούς"],
-    [12, "λιβάδια ποσειδωνίας: εδώ κρύβονται οι μαρίδες"],
+    [12, "Φύκια, εδώ που κρύβονται οι μαρίδες"],
     [22, "τα πρώτα καλά σφουγγάρια"],
     [30, "με τη σκανδαλόπετρα, ένα κομμάτι μάρμαρο, ο γυμνός δύτης φτάνει εδώ σε λίγα δευτερόλεπτα"],
     [40, "με το σκάφανδρο, από εδώ και κάτω χτυπούσε η νόσος των δυτών"],
     [48, "Αντικύθηρα, 1900: σφουγγαράδες της Σύμης βρίσκουν τον Μηχανισμό"],
-    [60, "εδώ φυτρώνει το ψιλό σφουγγάρι, το πιο ακριβό"],
+    [60, "εδώ φυτρώνει το εκλεκτό σφουγγάρι, το πιο ακριβό"],
     [70, "<b>70 μ</b> · τέλεια βουτιά. Ο Στάθης Χατζής κατέβηκε πιο βαθιά με μια ανάσα, το 1913"],
   ];
   const SKY = 300; // px of sky above the cave mouth
@@ -535,17 +535,17 @@ const BOOST = {"POP-029":["Minecraft","Grand Theft Auto V","Tetris","Super Mario
   function screenStart() {
     stopTimer(); clearTierLines(); $("hud").hidden = true; camFrac = .42; place(-0.6);
     const done = firstOpen() >= ids().length, begun = firstOpen() > 0 && !done;
-    layer.innerHTML = `<div class="title"><h1>ΣΦΟΥΓΓΑΡΟΜΥΡΙΟ</h1><span class="tag">η καθημερινή βουτιά</span></div>
+    layer.innerHTML = `<div class="title"><h1>ΣΦΟΥΓΓΑΡΟΜΥΡΙΟ</h1><span class="tag">Μία βούτα την ημέρα την ανία κάνει πέρα</span></div>
       <div class="startbox">
-        <span class="rule">7 ερωτήσεις · ${SECONDS}″ ανάσα η καθεμία · τα σπάνια πάνε πιο βαθιά</span>
+        <span class="rule">7 ερωτήσεις · Όσο πιο σπάνια η απάντησή σου τόσο πιο βαθιά πας!</span>
         <div class="rules" id="rules" hidden><ul>
-          <li>Ίδιες 7 ερωτήσεις για όλους, κάθε μέρα.</li>
-          <li>Γράψε μία σωστή απάντηση πριν σου τελειώσει η ανάσα. Λάθος; Ξαναδοκίμασε όσο κρατάς.</li>
+          <li>Οι ίδιες ερωτήσεις για όλους, ανανεώνονται κάθε ημέρα.</li>
+          <li>Γράψε μία σωστή απάντηση μέσα στον χρόνο. Λάθος; Ξαναδοκίμασε!</li>
           <li>Όσο λιγότεροι τη σκεφτούν, τόσο πιο βαθιά βουτάς: 1 βαθμός = 10 εκατοστά.</li>
-          <li>Η «έξυπνη» απάντηση; Φύκια για μεταξωτές κορδέλες. 700 βαθμοί = 70 μέτρα, εκεί που ζει το Σφουγγαρομύριο.</li>
-          <li>Τόνοι, greeklish και αγγλικά ονόματα περνάνε.</li>
+          <li>Η πιο σπάνια απάντηση είναι η μία στο Σφουγγαρομύριο!</li>
+          <li>Χωρίς τόνους, greeklish & αγγλικά ονόματα, όλα περνάνε.</li>
         </ul></div>
-        <button class="btn big" id="go">${done ? "Δες τη σημερινή σου ψαριά" : begun ? "▼ Συνέχισε τη βουτιά ▼" : "▼ Βουτιά ▼"}</button>
+        <button class="btn big" id="go">${done ? "Δες πώς τα πήγες σήμερα" : begun ? "▼ Συνέχισε τη βουτιά ▼" : "Βούτα!"}</button>
         <div class="row"><span>ΜΕΡΑ ${day}${day === todayNum ? " · ΣΗΜΕΡΑ" : ""} · ${dateOf(day).toUpperCase()}</span>
           <button class="link" id="how" type="button">πώς παίζεται</button>
           <label>ΑΡΧΕΙΟ <select id="daySel">${DATA.days.map((_, i) => `<option value="${i + 1}" ${i + 1 === day ? "selected" : ""}>Μέρα ${i + 1}${i + 1 === todayNum ? " (σήμερα)" : ""}</option>`).join("")}</select></label></div>
@@ -575,7 +575,7 @@ const BOOST = {"POP-029":["Minecraft","Grand Theft Auto V","Tetris","Super Mario
     $("dock").innerHTML = `<div class="fb" id="fb"></div><div class="chips" id="chips"></div>
       <form class="entry" id="form" autocomplete="off">
         <div class="clock" id="clock"><svg viewBox="0 0 46 46"><circle class="bg" cx="23" cy="23" r="20"/><circle class="fg" id="arc" cx="23" cy="23" r="20" stroke-dasharray="125.7" stroke-dashoffset="0"/></svg><span id="secs">${SECONDS}</span></div>
-        <input id="ans" type="text" placeholder="μία απάντηση…" aria-label="Απάντηση" autocapitalize="off" spellcheck="false" enterkeyhint="go">
+        <input id="ans" type="text" placeholder="Απάντηση" aria-label="Απάντηση" autocapitalize="off" spellcheck="false" enterkeyhint="go">
         <button class="btn" type="submit">Βουτιά</button></form>`;
     const tried = [];
     const t0 = performance.now(), end = t0 + SECONDS * 1000;
@@ -600,7 +600,7 @@ const BOOST = {"POP-029":["Minecraft","Grand Theft Auto V","Tetris","Super Mario
     chips.innerHTML = "";
     if (r.status === "unknown") { say(`«${text.trim()}»: δεν το βρίσκουμε στον βυθό. Δοκίμασε άλλη.`, true); return reset(); }
     if (r.status === "suggest") {
-      say("Εννοείς…");
+      say("Μήπως εννοείς...");
       chips.innerHTML = r.cands.map(i => `<button type="button" class="chip" data-i="${i}">${esc(U.n[i])}</button>`).join("");
       chips.querySelectorAll(".chip").forEach(b => b.onclick = () => { chips.innerHTML = ""; pick(pid, +b.dataset.i, tried); });
       return;
@@ -650,7 +650,7 @@ const BOOST = {"POP-029":["Minecraft","Grand Theft Auto V","Tetris","Super Mario
     const { m, total } = shares(pid), sorted = [...m.entries()].sort((x, y) => y[1] - x[1]);
     const li = ([n, s]) => `<li class="${n === mine ? "me" : ""}">${esc(n)} <span class="pct">${pct(s)}</span></li>`;
     return `<div class="others"><h3>${total >= 5 ? `Τι είπαν ${total} παίκτες` : "Οι πιο συνηθισμένες (εκτίμηση)"}</h3><ol>${sorted.slice(0, 3).map(li).join("")}</ol>
-      <h3>Βαθιές που υπήρχαν</h3><ol>${sorted.slice(-2).reverse().map(li).join("")}</ol>
+      <h3>Οι πιο βαθιές</h3><ol>${sorted.slice(-2).reverse().map(li).join("")}</ol>
       <span class="note">${DATA.prompts[pid].v.length} σωστές απαντήσεις συνολικά</span></div>`;
   }
 
