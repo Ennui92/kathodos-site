@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Κάθοδος · The Greek daily rarity game</title>
+<meta name="description" content="Κάθοδος is a Greek daily word game: seven prompts, fifty seconds each, and the rarer your answer, the deeper you sink. Next: Σφουγγαρομύριο, the sponge divers of Kalymnos.">
+<link rel="canonical" href="https://ennui92.github.io/kathodos-site/">
+<meta name="theme-color" content="#0b2a40">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Κάθοδος · The Greek daily rarity game">
+<meta property="og:description" content="Seven prompts a day, fifty seconds each. Name the thing nobody else thought of and sink deeper.">
+<meta property="og:image" content="https://ennui92.github.io/kathodos-site/assets/og.jpg">
+<meta property="og:url" content="https://ennui92.github.io/kathodos-site/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;700&family=Commissioner:wght@400;600;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Κάθοδος",
+  "inLanguage": "el",
+  "genre": "Daily word game",
+  "url": "https://ennui92.github.io/kathodos-site/play/",
+  "description": "A Greek daily rarity game: seven prompts, fifty seconds each; rarer valid answers score more.",
+  "author": { "@type": "Person", "name": "Ermis Zacharopoulos", "url": "https://ennui92.github.io/ermis-dev/" }
+}
+</script>
+<style>
+/* One column of Aegean water: the page itself goes from the harbour down to the seabed as you scroll.
+   Pixel display type for names and numbers, a plain humanist face for reading. */
+:root{
+  --sea:#0f4c63; --deep:#071a2b; --ink:#040b14; --foam:#eaf6f8; --mute:#8fb0c0;
+  --sponge:#e3a83b; --gold:#ffcf4a; --red:#e2504a; --blue:#2f6fd0; --line:rgba(234,246,248,.14); --panel:rgba(5,16,28,.78);
+  --f-pix:"Press Start 2P","JetBrains Mono",monospace; --f-ui:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --f-text:"Commissioner","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--ink)}
+body{margin:0;color:var(--foam);font:16px/1.6 var(--f-text);
+  background:linear-gradient(180deg,#0e3a52 0,#0b2a40 1000px,var(--deep) 2400px,var(--ink) 3800px)}
+img{max-width:100%;display:block}
+a{color:var(--gold)}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.hero{position:relative}
+.hero img{width:100%;aspect-ratio:16/9;object-fit:cover;image-rendering:pixelated}
+.hero .logo{position:absolute;inset:7% 0 auto;text-align:center}
+.logo b{font:400 clamp(26px,7vw,76px)/1 var(--f-pix);color:#fff;text-shadow:4px 4px 0 var(--red),-3px -2px 0 var(--blue),0 8px 22px rgba(0,0,0,.35)}
+.logo i{display:block;font:normal clamp(10px,1.6vw,15px) var(--f-ui);letter-spacing:.45em;margin-top:16px;color:#0d2233;text-shadow:0 1px 0 #fff9}
+.intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center;padding-block:36px 10px}
+h1{font:800 clamp(28px,4vw,42px)/1.15 var(--f-text);margin:0 0 12px;text-wrap:balance}
+h2{font:400 clamp(14px,2vw,18px)/1.6 var(--f-pix);margin:0 0 10px;letter-spacing:.03em;text-wrap:balance}
+.eyebrow{font:12px var(--f-ui);letter-spacing:.2em;text-transform:uppercase;color:var(--sponge)}
+p{max-width:64ch;margin:0 0 14px;color:#d3e4eb}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.btn{display:inline-block;font:400 13px/1 var(--f-pix);padding:16px 20px;color:#fff;background:#0a1d2e;border:2px solid #7fe0ff;text-decoration:none;box-shadow:4px 4px 0 #02070d}
+.btn.primary{background:var(--red);border-color:#ffb4ad}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #02070d}
+.rules{list-style:none;margin:0;padding:18px;display:grid;gap:12px;background:var(--panel);border:1px solid #23415a}
+.rules li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:baseline}
+.rules b{font:400 15px var(--f-pix);color:var(--gold)}
+section{padding-block:48px 8px;border-top:1px dashed var(--line);margin-top:30px;position:relative}
+.depth{position:absolute;right:0;top:14px;font:11px var(--f-ui);color:var(--mute)}
+.tiers{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:18px}
+.tier{background:rgba(4,12,22,.55);border:1px solid var(--line);padding:12px;min-width:0}
+.tier b{display:block;font:400 11px/1.5 var(--f-pix);color:var(--c)}
+.tier span{font:12px var(--f-ui);color:var(--mute)}
+.tier q{display:block;font-size:13px;color:#cfe2ea;margin-top:6px;quotes:"«" "»"}
+.examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.ex{background:var(--panel);border:1px solid #23415a;padding:14px 16px}
+.ex p{font:700 15px/1.4 var(--f-ui);color:#fff;margin:0 0 8px}
+.ex small{font:12px var(--f-ui);color:var(--mute)}
+.next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.strip img{aspect-ratio:9/16;object-fit:cover;image-rendering:pixelated;border:2px solid #16314a}
+.crew{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.crew img{image-rendering:pixelated;background:#0a2236;border:2px solid #16314a}
+.stats{display:flex;flex-wrap:wrap;gap:20px 40px;margin:16px 0}
+.stats div b{display:block;font:400 18px var(--f-pix);color:var(--gold)}
+.stats div span{font-size:13px;color:#b9cfd9}
+footer{padding-block:40px 60px;font:12px var(--f-ui);color:var(--mute)}
+footer a{color:var(--mute)}
+@media (max-width:860px){.intro,.next{grid-template-columns:minmax(0,1fr)}.tiers{grid-template-columns:repeat(3,minmax(0,1fr))}.examples{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:440px){.tiers{grid-template-columns:repeat(2,minmax(0,1fr))}.strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <img src="assets/00_title.jpg" alt="Pixel art of Pothia harbour on Kalymnos at dawn: a white kaiki with sponges drying on its rigging and a rope hanging into the dark sea.">
+  <div class="logo"><b>ΚΑΘΟΔΟΣ</b><i>Η ΚΑΘΗΜΕΡΙΝΗ ΚΑΤΑΔΥΣΗ</i></div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <div>
+      <div class="eyebrow">A Greek daily word game</div>
+      <h1>Name the thing nobody else thought of.</h1>
+      <p>Every day there are seven prompts, the same for everyone: «Πες κάτι που ανακινείς πριν το χρησιμοποιήσεις», «Πες ένα βιντεοπαιχνίδι που παίζεται στο Switch», «Πες μια λέξη που κρύβει ένα νησί». You type one answer. If it fits and few people said it, you sink deeper.</p>
+      <p>It accepts Greek, English and Greeklish, ignores accents, and forgives η, ι, υ, ει, οι and double letters. If it isn't sure what you meant, it asks «Εννοείς…;» before it counts.</p>
+      <div class="cta"><a class="btn primary" href="play/">▼ ΠΑΙΞΕ ΤΩΡΑ ▼</a><a class="btn" href="#next">Τι έρχεται</a></div>
+    </div>
+    <ul class="rules" aria-label="How it works">
+      <li><b>7</b><span>prompts a day, the same for everyone</span></li>
+      <li><b>50″</b><span>to type each answer</span></li>
+      <li><b>10 μ</b><span>of depth for every point</span></li>
+      <li><b>700</b><span>points is a perfect dive</span></li>
+    </ul>
+  </div>
+
+  <section id="rarity">
+    <span class="depth">−10 μ</span>
+    <div class="eyebrow">Rarer answers sink deeper</div>
+    <h2>Six tiers, from the surface to the floor</h2>
+    <p>Each prompt has a full list of valid answers, often thousands, built from a knowledge graph of more than 360,000 things: films, games, series, actors, animals, countries, Greek words. Famous answers float. The rest go deep, and one hand-picked answer per prompt is worth the most.</p>
+    <div class="tiers">
+      <div class="tier" style="--c:#6fa8b4"><b>Αχέροντας</b><span>+10</span><q>Η απάντηση που λένε όλοι πρώτη.</q></div>
+      <div class="tier" style="--c:#7f97c4"><b>Χάροντας</b><span>+15</span><q>Έξυπνη επιλογή. Την σκέφτηκαν όμως κι άλλοι.</q></div>
+      <div class="tier" style="--c:#8d7fc9"><b>Στύγα</b><span>+30</span><q>Καλή απάντηση. Κολυμπάς με το κοπάδι.</q></div>
+      <div class="tier" style="--c:#c46a6a"><b>Κέρβερος</b><span>+60</span><q>Σπάνια. Ο φύλακας σε άφησε να περάσεις.</q></div>
+      <div class="tier" style="--c:#cfd3a8"><b>Ασφόδελος</b><span>+85</span><q>Πολύ σπάνια. Λίγοι έφτασαν ως εδώ.</q></div>
+      <div class="tier" style="--c:#f1cf7a"><b>Ηλύσια</b><span>+100</span><q>Σχεδόν κανείς δεν την είπε. Τέλεια κατάβαση.</q></div>
+    </div>
+    <div class="examples">
+      <div class="ex"><p>Πες μια ταινία με αριθμό στον τίτλο</p><small>1,875 answers · from «300» to «Fahrenheit 9/11»</small></div>
+      <div class="ex"><p>Πες κάποιον που έχει παίξει σε ταινία της Marvel</p><small>547 answers · Ζεντέγια floats, Ντάνι Πούντι sinks</small></div>
+      <div class="ex"><p>Πες μια λέξη που κρύβει ένα ελληνικό νησί</p><small>526 answers · «κουμπάρος» hides Πάρος, «προδοσία» hides Ρόδος</small></div>
+    </div>
+  </section>
+
+  <section id="next">
+    <span class="depth">−30 μ</span>
+    <div class="eyebrow">Coming next</div>
+    <h2>Σφουγγαρομύριο: the sponge divers of Kalymnos</h2>
+    <div class="next">
+      <div>
+        <p>The next version leaves the Underworld for a real descent. Every answer is a dive from a kaiki in Pothia harbour. The timer is a held breath. The shallows are seagrass and shoals of picarel, then rock walls covered in sponges, then an ancient wreck like the one Symi sponge divers found off Antikythera in 1900. At 70 metres lies the rarest sponge of all: the Σφουγγαρομύριο, one in ten thousand («ένα στα μύρια»).</p>
+        <p>At the end your seven answers hang from the mast as a string of sponges, small and pale for the obvious ones, golden for the deep ones.</p>
+        <div class="stats">
+          <div><b>Αφρός</b><span>+10 · what everyone says</span></div>
+          <div><b>Χταπόδι</b><span>+60 · hidden in the rocks</span></div>
+          <div><b>Σφουγγαρομύριο</b><span>+100 · ένα στα μύρια</span></div>
+        </div>
+      </div>
+      <div class="strip">
+        <img src="assets/02_zone_shallow.jpg" alt="Shallow zone: seagrass meadow, sun rays and a shoal of small silver fish." loading="lazy">
+        <img src="assets/03_zone_mid.jpg" alt="Middle zone: rock walls covered in sponges, an octopus, a grouper and a moray eel." loading="lazy">
+        <img src="assets/04_zone_wreck.jpg" alt="Deep zone: an ancient wreck with amphorae and a bronze arm, a hard-hat diver with a lamp." loading="lazy">
+        <img src="assets/05_zone_floor_gem.jpg" alt="Seabed: a glowing golden sponge beside a marble diving stone." loading="lazy">
+      </div>
+    </div>
+    <div class="crew">
+      <img src="assets/diver_walk.gif" width="128" height="128" alt="A 64-pixel hard-hat sponge diver walking.">
+      <p style="margin:0">The hard-hat diver is a 3D model rendered frame by frame into 64-pixel sprites, so every pose matches. The free diver with the marble σκανδαλόπετρα comes next.</p>
+    </div>
+  </section>
+
+  <section id="results">
+    <span class="depth">−60 μ</span>
+    <div class="eyebrow">At the end of the dive</div>
+    <h2>Your catch, the curve, and what everyone else said</h2>
+    <div class="next">
+      <img src="assets/07_results_harbour.jpg" alt="Kalymnos harbour at sunset with a string of seven sponges of different sizes hanging from a kaiki's mast." loading="lazy" style="image-rendering:pixelated;border:2px solid #16314a;max-height:520px;object-fit:cover">
+      <div>
+        <p>After the seventh prompt you see your depth, where you landed among today's players, and every round's full answer list: which answers floated, which sank, and the one gem with its story.</p>
+        <p>One dive a day, the same for everyone, so you can compare with friends. Copy your result as a row of emoji and send it.</p>
+        <div class="cta"><a class="btn primary" href="play/">▼ ΠΑΙΞΕ ΤΩΡΑ ▼</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  Made by <a href="https://ennui92.github.io/ermis-dev/">Ermis Zacharopoulos</a> · Greek prompts, a knowledge graph built from Wikidata and Wikipedia, pixel art made with AI tools and a Blender sprite pipeline · Inspired by Krillion.
+</footer>
+</body>
+</html>
